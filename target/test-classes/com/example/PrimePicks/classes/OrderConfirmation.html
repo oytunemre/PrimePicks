@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PRIMEPICKS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/mainPage}">PRIMEPICKS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/aboutPage}">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/category/Electronics}">Electronics</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/Clothing}">Clothing</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/HomeOffice}">Office</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/SportsOutdoor}">Sports</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/BooksHobbies}">Books</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div th:if="${user != null}" class="d-flex align-items-center">
+                <form class="d-flex" th:action="@{/ShoppingCart}" method="get">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span id="cartSize" class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartSize}">0</span>
+                    </button>
+                </form>
+                <form th:action="@{/logout}" method="get" class="ms-2">
+                    <button class="btn btn-outline-dark" type="submit">Logout</button>
+                </form>
+                <form th:action="@{/UserPage}" method="get" class="ms-2">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-person-fill"></i> <span th:text="${user.username}">Profile</span>
+                    </button>
+                </form>
+            </div>
+            <div th:if="${user == null}" class="d-flex">
+                <form th:action="@{/LoginPage}" method="get" class="me-2">
+                    <button class="btn btn-outline-dark" type="submit">Login</button>
+                </form>
+                <form th:action="@{/RegisterPage}" method="get">
+                    <button class="btn btn-outline-dark" type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+    </div>
+</header>
+<!-- Section-->
+<section class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Order Confirmed :)</h1>
+            <p class="lead fw-normal text-muted mb-0">Thank you for your purchase! Your order has been successfully placed.</p>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js}"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>

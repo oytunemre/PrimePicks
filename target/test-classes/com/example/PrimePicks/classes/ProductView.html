@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/}">PRIMEPICKS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/aboutPage}">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/category/Electronics}">Electronics</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/Clothing}">Clothing</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/HomeOffice}">Office</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/SportsOutdoor}">Sports</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/BooksHobbies}">Books</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="btn btn-outline-dark" th:href="@{/LoginPage}">Login</a>
+            <a class="btn btn-outline-dark" th:href="@{/RegisterPage}">Register</a>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Product Details</h1>
+        </div>
+    </div>
+</header>
+<!-- Product Details Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${product.imageBase64}" alt="Product Image" />
+                    <div class="card-body">
+                        <h2 class="card-title" th:text="${product.productName}">Product Name</h2>
+                        <p class="card-text" th:text="'Stock Status: ' + ${product.stockStatus}">Stock Status:</p>
+                        <p class="card-text" th:text="'Brand: ' + ${product.brand}">Brand:</p>
+                        <p class="card-text" th:text="'Color: ' + ${product.color}">Color:</p>
+                        <p class="card-text" th:text="'Size: ' + ${product.size}">Size:</p>
+                        <p class="card-text" th:text="'Weight: ' + ${product.weight}">Weight:</p>
+                        <p class="card-text" th:text="'Category: ' + ${product.category}">Category:</p>
+                        <p class="card-text" th:text="'Price: $' + ${product.price}">Price:</p>
+                    </div>
+                </div>
+                <form th:action="@{/addToCart}" method="post">
+                    <input type="hidden" name="id" th:value="${product.productID}">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+    </div>
+</footer>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>
