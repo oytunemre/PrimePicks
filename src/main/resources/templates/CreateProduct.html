@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PrimePicks Product Page</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-3">
+        <a class="navbar-brand" th:href="@{/}">PRIMEPICKS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/AboutPage}">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/category/Electronics}">Electronics</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/Clothing}">Clothing</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/HomeOffice}">Office</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/SportsOutdoor}">Sports</a></li>
+                        <li><a class="dropdown-item" th:href="@{/category/BooksHobbies}">Books</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" th:action="@{/ShoppingCart}" method="get">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span id="cartSize" class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartSize}">0</span>
+                </button>
+            </form>
+            <form class="d-flex" th:action="@{/logout}" method="get">
+                <button class="btn btn-outline-dark" type="submit">
+                    Logout
+                </button>
+            </form>
+            <form class="d-flex" th:action="@{/CreateProductForm}" method="get">
+                <button class="btn btn-outline-dark" type="submit">
+                    Create Product
+                </button>
+            </form>
+            <form class="d-flex" th:action="@{/userProfile}" method="get">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-person-fill"></i>
+                    <span th:if="${user != null}" th:text="${user.username}">Username</span>
+                    <span th:if="${user == null}">Guest</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- Form -->
+<div class="container my-5">
+    <form method="POST" th:action="@{/saveProduct}" th:object="${product}" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label for="productName" class="form-label fw-bolder">Product Name</label>
+            <input type="text" id="productName" class="form-control" th:field="*{productName}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="stockStatus" class="form-label fw-bolder">Stock Status</label>
+            <input type="number" id="stockStatus" class="form-control" th:field="*{stockStatus}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="brand" class="form-label fw-bolder">Brand</label>
+            <input type="text" id="brand" class="form-control" th:field="*{brand}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="color" class="form-label fw-bolder">Color</label>
+            <input type="text" id="color" class="form-control" th:field="*{color}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="size" class="form-label fw-bolder">Size</label>
+            <input type="text" id="size" class="form-control" th:field="*{size}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="weight" class="form-label fw-bolder">Weight</label>
+            <input type="text" id="weight" class="form-control" th:field="*{weight}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="price" class="form-label fw-bolder">Price</label>
+            <input type="text" id="price" class="form-control" th:field="*{price}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="category" class="form-label fw-bolder">Category</label>
+            <input type="text" id="category" class="form-control" th:field="*{category}" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="image" class="form-label fw-bolder">Image</label>
+            <input type="file" id="image" class="form-control" name="image" accept="image/png, image/jpeg" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

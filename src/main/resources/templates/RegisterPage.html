@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="../static/assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Register</h1>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <form method="POST" th:action="@{/createUser}" th:object="${UserModel}" onsubmit="return validatePassword()">
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        <table class="table">
+            <tr>
+                <td><h5 class="fw-bolder">First Name</h5></td>
+                <td><input type="text" name="firstName" class="form-control" th:field="*{firstName}" required /></td>
+            </tr>
+            <tr>
+                <td><h5 class="fw-bolder">Last Name</h5></td>
+                <td><input type="text" name="lastName" class="form-control" th:field="*{lastName}" required /></td>
+            </tr>
+            <tr>
+                <td><h5 class="fw-bolder">Email Address</h5></td>
+                <td><input type="email" name="email" class="form-control" th:field="*{email}" required /></td>
+            </tr>
+            <tr>
+                <td><h5 class="fw-bolder">Username</h5></td>
+                <td><input type="text" name="username" class="form-control" th:field="*{username}" required /></td>
+            </tr>
+            <tr>
+                <td><h5 class="fw-bolder">Address</h5></td>
+                <td><input type="text" name="address" class="form-control" th:field="*{address}" required /></td>
+            </tr>
+            <tr>
+                <td><h5 class="fw-bolder">Password</h5></td>
+                <td><input type="password" name="password" class="form-control" th:field="*{password}" minlength="4" maxlength="9" required /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+    <div class="form-container">
+        <p>Already have an account?
+            <a th:href="@{/LoginPage}">Login here</a></p>
+    </div>
+</div>
+
+<script>
+    function validatePassword() {
+        var password = document.querySelector('input[name="password"]').value;
+        if (password.length < 4 || password.length > 9) {
+            alert('Password must be between 4 and 9 characters long.');
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
