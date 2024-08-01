@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.PrimePicks.PrimePicksApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.157 s -- in com.example.PrimePicks.PrimePicksApplicationTests
